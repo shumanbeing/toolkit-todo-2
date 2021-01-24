@@ -5,7 +5,12 @@ import Modal from '@material-ui/core/Modal';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { selectTask, handleModalOpen, selectIsModalOpen } from '../taskSlice';
+import {
+  completeTask,
+  selectTask,
+  handleModalOpen,
+  selectIsModalOpen,
+} from '../taskSlice';
 import TaskForm from '../taskForm/TaskForm';
 import styles from './TaskItem.module.scss';
 
@@ -32,7 +37,7 @@ const TaskItem: React.FC<PropTypes> = ({ task }) => {
       <div className={styles.right_item}>
         <Checkbox
           checked={task.completed}
-          onClick={() => console.log(`check ${task.id}`)}
+          onClick={() => dispatch(completeTask(task))}
           className={styles.checkbox}
         />
         <button onClick={handleOpen} className={styles.edit_button}>

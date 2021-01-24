@@ -33,6 +33,15 @@ export const taskSlice = createSlice({
       };
       state.tasks = [newTask, ...state.tasks];
     },
+    // task完了・未完了のチェック
+    completeTask: (state, action) => {
+      // state.tasksの中から指定したtaskを抜き出す
+      const task = state.tasks.find((t) => t.id === action.payload.id);
+      if (task) {
+        // 抜き出したtaskのcompletedを反転させる
+        task.completed = !task.completed;
+      }
+    },
     // taskの編集
     editTask: (state, action) => {
       // state.tasksの中から指定したtaskを抜き出す
@@ -55,6 +64,7 @@ export const taskSlice = createSlice({
 
 export const {
   createTask,
+  completeTask,
   editTask,
   selectTask,
   handleModalOpen,
